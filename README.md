@@ -4,6 +4,8 @@
 # fontscales
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/EmilHvitfeldt/fontscales/workflows/R-CMD-check/badge.svg)](https://github.com/EmilHvitfeldt/fontscales/actions)
 <!-- badges: end -->
 
 The goal of fontscales is to is to let you use fancy iconographic fonts
