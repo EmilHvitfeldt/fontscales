@@ -9,6 +9,11 @@
 The goal of fontscales is to is to let you use fancy iconographic fonts
 with ease in [ggplot2](https://ggplot2.tidyverse.org/).
 
+This package relies heavily on [ragg](https://ragg.r-lib.org/), please
+see [this
+article](https://www.tidyverse.org/blog/2021/02/modern-text-features/)
+for more information.
+
 ## Installation
 
 You can install the dev version of fontscales from
