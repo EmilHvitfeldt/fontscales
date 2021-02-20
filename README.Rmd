@@ -18,26 +18,37 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of fontscales is to ...
+The goal of fontscales is to is to let you use fancy iconographic fonts with ease in [ggplot2](https://ggplot2.tidyverse.org/).
 
 ## Installation
 
-You can install the released version of fontscales from [CRAN](https://CRAN.R-project.org) with:
+You can install the dev version of fontscales from [Github](http://github.com/) with:
 
-``` r
-install.packages("fontscales")
+```{r installation, eval=FALSE}
+require("devtools")
+install_github("tidymodels/fontscales")
 ```
 
 ## StateFace
 
-https://propublica.github.io/stateface/
+The [StateFace](https://propublica.github.io/stateface/) font by [ProPublica](https://www.propublica.org/) contains the 50 different U.S. states as tiny glyphs and can thus be used in data visualizations.
+
+The data set `usa_arrests` represents a data set where this might be useful where the `state` variable contains the name of the state
 
 ```{r}
 library(fontscales)
+usa_arrests
+```
+
+Using `ggplot2` you pass the state name variable to the `label` aesthetic and use `geom_stateface()` to draw the states. (This should function similary to `geom_text()` or `geom_point()`).
+
+```{r}
 library(ggplot2)
 ggplot(usa_arrests, aes(murder, assault, label = state, color = urban_pop)) +
   geom_stateface()
 ```
+
+And other `ggplot2` functions work as expected
 
 ```{r}
 library(tidyr)

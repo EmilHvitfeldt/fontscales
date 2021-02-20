@@ -15,6 +15,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1.9001
 Imports: 
     ggplot2,
-    rlang
+    rlang,
+    systemfonts
 Depends: 
     R (>= 2.10)

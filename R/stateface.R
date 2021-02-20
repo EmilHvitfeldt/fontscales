@@ -19,7 +19,7 @@
 #' }
 #'
 #' @source \url{https://propublica.github.io/stateface/}
-#' @importFrom rlang abort
+#' @importFrom rlang abort warn
 #' @importFrom ggplot2 position_nudge layer
 geom_stateface <- function(mapping = NULL, data = NULL, stat = "identity",
                            position = "identity", ..., parse = FALSE,
@@ -57,7 +57,7 @@ GeomStateFace <- ggplot2::ggproto("GeomStateFace", ggplot2::Geom,
                     draw_panel = function(data, panel_params, coord, parse = FALSE,
                                           na.rm = FALSE, check_overlap = FALSE) {
                       lab <- data$label
-                      lab <- stateface_key[lab]
+                      lab <- stateface_key_swap(lab)
                       if (parse) {
                         lab <- parse_safe(as.character(lab))
                       }
@@ -105,6 +105,40 @@ just_dir <- function(x, tol = 0.001) {
   out[x < 0.5 - tol] <- 1L
   out[x > 0.5 + tol] <- 3L
   out
+}
+
+stateface_key_swap <- function(x) {
+  if (!"StateFace" %in% systemfonts::system_fonts()$family) {
+    abort(
+      paste(
+        "`StateFace` font was not found. Please go to",
+        "https://propublica.github.io/stateface/",
+        "to download and install."
+      )
+    )
+  }
+
+  res <- stateface_key[x]
+
+  if (any(is.na(res))) {
+    missmatched <- x[is.na(res)]
+    missmatched <- unique(missmatched)
+
+    warn(
+      paste(
+        "The following strings could not be matched as states:",
+        paste0("\"", missmatched, "\"", collapse = ", "),
+        "Run `stateface_key()` to see valid state names",
+        sep = "\n"
+      )
+    )
+    res[is.na(res)] <- ""
+  }
+  res
+}
+
+show_stateface_key <- function() {
+  names(stateface_key)
 }
 
 stateface_key <- c(
