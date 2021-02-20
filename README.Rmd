@@ -1,0 +1,50 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# fontscales
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of fontscales is to ...
+
+## Installation
+
+You can install the released version of fontscales from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("fontscales")
+```
+
+## StateFace
+
+https://propublica.github.io/stateface/
+
+```{r}
+library(fontscales)
+library(ggplot2)
+ggplot(usa_arrests, aes(murder, assault, label = state, color = urban_pop)) +
+  geom_stateface()
+```
+
+```{r}
+library(tidyr)
+usa_arrests %>%
+  pivot_longer(-c(state, urban_pop)) %>%
+  ggplot(aes(urban_pop, value, label = state)) +
+  geom_stateface() +
+  facet_wrap(~name, scales = "free_y")
+```
+
