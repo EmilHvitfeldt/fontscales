@@ -23,7 +23,7 @@ You can install the dev version of fontscales from
 
 ``` r
 require("devtools")
-install_github("tidymodels/fontscales")
+install_github("EmilHvitfeldt/fontscales")
 ```
 
 ## StateFace
