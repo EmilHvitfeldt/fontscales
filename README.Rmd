@@ -29,7 +29,7 @@ You can install the dev version of fontscales from [Github](http://github.com/) 
 
 ```{r installation, eval=FALSE}
 require("devtools")
-install_github("tidymodels/fontscales")
+install_github("EmilHvitfeldt/fontscales")
 ```
 
 ## StateFace
